@@ -9,6 +9,9 @@ class Node():
         self.left = None
         self.right = None
 
+    def __str__(self):
+        return f'<Node data:{{self.data}} left:{{self.left.data}} right:{{self.right.data}}>'
+
 
 class BinaryTree():
     """
@@ -18,6 +21,11 @@ class BinaryTree():
 
     def __init__(self):
         self.root = None
+        self.count = 0
+
+
+    def __len__():
+        return self.count
 
 
     def _add(self, node, val):
@@ -34,30 +42,56 @@ class BinaryTree():
 
 
     def add(self, val):
+        """
+        Add a new Node with data `val` into the Binary Tree
+        """
         if self.root == None:
             self.root = Node(val)
-            return
         else:
             self._add(self.root, val)
 
+        self.count += 1
+
 
     def remove(self, val):
-        raise NotImplementedError('BinaryTree: Remove not implemented.')
+        """
+        Remove a Node with data `val` from the Binary Tree
+        """
+        pass
 
 
-    def _inorder(self, node):
+    def _traverse(self, node, mode):
+        """
+        Traverses the Binary Tree recursively to return traversal order
+        """
         if node == None:
             return []
 
-        return self._inorder(node.left) + [node] + self._inorder(node.right)
+        if mode == "inorder":
+            return (
+                self._traverse(node.left, mode="inorder") +
+                [node] +
+                self._traverse(node.right, mode="inorder")
+            )
+        elif mode == "preorder":
+            return (
+                [node] +
+                self._traverse(node.left, mode="preorder") +
+                self._traverse(node.right, mode="preorder")
+            )
+        else:
+            return (
+                self._traverse(node.left, mode="postorder") +
+                self._traverse(node.right, mode="postorder") +
+                [node]
+            )
 
 
     def inorder_traversal(self):
-        return self._inorder(self.root)
+        return self._traverse(self.root, mode="inorder")
 
+    def preorder_traversal(self):
+        return self._traverse(self.root, mode="preorder")
 
-    def BFS(self, start):
-        """
-        Breadth First Search implementation
-        """
-        pass
+    def postorder_traversal(self):
+        return self._traverse(self.root, mode="postorder")
