@@ -1,8 +1,10 @@
 
+
 class Node():
     """
     A single Node within a Tree
     """
+
 
     def __init__(self, val):
         self.data = val

@@ -6,6 +6,7 @@ class BinarySearch():
     Basic binary search algorithm
     """
 
+
     def _binary_search(self, array, left, right, target):
         """
         Recursive function to conduct binary search
