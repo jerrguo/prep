@@ -7,6 +7,9 @@ class BinarySearch():
     """
 
     def _binary_search(self, array, left, right, target):
+        """
+        Recursive function to conduct binary search
+        """
         mid = (right - left) // 2 + left
         if left > right:
             return -1
