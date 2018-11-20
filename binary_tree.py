@@ -1,7 +1,7 @@
 
 class Node():
     """
-    A single node within a Tree
+    A single Node within a Tree
     """
 
     def __init__(self, val):
@@ -39,6 +39,9 @@ class Node():
 
 
     def left_successor(self):
+        """
+        Returns the left successor to the Node
+        """
         if self.left == None:
             return -1
 
@@ -49,6 +52,9 @@ class Node():
 
 
     def right_successor(self):
+        """
+        Returns the right successor to the Node
+        """
         if self.right == None:
             return -1
 
@@ -59,6 +65,9 @@ class Node():
 
 
     def successor(self):
+        """
+        Returns the successor to the Node with left successor having priority
+        """
         if self.left_successor():
             return self.left_successor()
         if self.right_successor():
@@ -70,7 +79,7 @@ class Node():
 
 class BinaryTree():
     """
-    Tree object of Nodes
+    Binary Tree object of Nodes
     """
 
 
@@ -79,7 +88,7 @@ class BinaryTree():
         self.count = 0
 
 
-    def __len__():
+    def __len__(self):
         return self.count
 
 
@@ -123,21 +132,17 @@ class BinaryTree():
         elif val > node.data:
             node.right = self._remove(val, node.right)
         else:
+            self.count -= 1
             if node.left == None:
-                temp = node.right
-                node = None
-                print(val, 'LEFT is NONE')
-                return temp
+                return node.right
             elif node.right == None:
-                temp = node.left
-                node = None
-                print(val, 'RIGHT is NONE')
-                return temp
-
-            temp = node.right_successor()
-            print(val, temp)
-            node.data = temp.data
-            node.right = self._remove(val, node.right)
+                return node.left
+            else:
+                temp = node.right_successor()
+                node.data = temp.data
+                # Removing the successor node will decrement `self.count` incorrectly
+                self.count += 1
+                node.right = self._remove(temp.data, node.right)
 
         return node
 
@@ -178,14 +183,17 @@ class BinaryTree():
 
 
     def inorder_traversal(self):
+        """ Performs Inorder Traversal """
         return self._traverse(self.root, mode="inorder")
 
 
     def preorder_traversal(self):
+        """ Performs Preorder Traversal """
         return self._traverse(self.root, mode="preorder")
 
 
     def postorder_traversal(self):
+        """ Performs Postorder Traversal """
         return self._traverse(self.root, mode="postorder")
 
 
@@ -193,20 +201,23 @@ if __name__ == '__main__':
     """
     For Testing...
     """
-    tree = BinaryTree()
-    tree.add(2)
-    tree.add(2)
-    tree.add(3)
-    tree.add(4)
-    tree.add(5)
-    tree.add(2.5)
-    tree.add(3.5)
-    tree.add(2.75)
-    print(tree.inorder_traversal())
-    tree.remove(4)
-    tree.remove(5)
-    tree.remove(2)
-    tree.remove(66)
-    tree.remove(2)
-    tree.remove(2.75)
-    print(tree.inorder_traversal())
+    # tree = BinaryTree()
+    # tree.add(2)
+    # tree.add(2)
+    # tree.add(3)
+    # tree.add(4)
+    # tree.add(5)
+    # tree.add(2.5)
+    # tree.add(3.5)
+    # tree.add(2.75)
+    # print(len(tree))
+    # print(tree.inorder_traversal())
+    # tree.remove(4)
+    # tree.remove(5)
+    # tree.remove(2)
+    # tree.remove(66)
+    # tree.remove(2)
+    # tree.remove(2.75)
+    # print(len(tree))
+    # print(tree.inorder_traversal())
+    # print(tree.postorder_traversal())
