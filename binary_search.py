@@ -1,3 +1,5 @@
+import warnings
+
 
 class BinarySearch():
     """
@@ -19,7 +21,11 @@ class BinarySearch():
 
     def binary_search(self, array, target):
         """
-        Returns the location of a target in a list or -1 if it doesn't exist
+        Returns the index of a target in a sorted list or -1 if it doesn't exist
         """
-        array.sort()
+        if array != array.sort():
+            message = 'The given array for binary search is not sorted... ' + \
+                      'Results will be based on the sorted array.'
+            warnings.warn(message, Warning, stacklevel=2)
+
         return self._binary_search(array, 0, len(array), target)
