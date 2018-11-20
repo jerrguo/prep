@@ -2,7 +2,7 @@
 
 class SortingAlgorithms():
     """
-    Collection of basic sorting algorithms
+    Collection of basic sorting algorithms without use of special data structures
     """
 
 
@@ -79,8 +79,3 @@ class SortingAlgorithms():
         arr[left] = pivot
 
         return self.quicksort(arr[:left]) + [pivot] + self.quicksort(arr[left+1:])
-
-
-    def heapsort(self, arr):
-        """ Conducts heapsort """
-        pass

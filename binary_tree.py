@@ -197,29 +197,3 @@ class BinaryTree():
     def postorder_traversal(self):
         """ Performs Postorder Traversal """
         return self._traverse(self.root, mode="postorder")
-
-
-if __name__ == '__main__':
-    """
-    For Testing...
-    """
-    # tree = BinaryTree()
-    # tree.add(2)
-    # tree.add(2)
-    # tree.add(3)
-    # tree.add(4)
-    # tree.add(5)
-    # tree.add(2.5)
-    # tree.add(3.5)
-    # tree.add(2.75)
-    # print(len(tree))
-    # print(tree.inorder_traversal())
-    # tree.remove(4)
-    # tree.remove(5)
-    # tree.remove(2)
-    # tree.remove(66)
-    # tree.remove(2)
-    # tree.remove(2.75)
-    # print(len(tree))
-    # print(tree.inorder_traversal())
-    # print(tree.postorder_traversal())
